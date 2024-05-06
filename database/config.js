@@ -3,25 +3,20 @@
 //instalar npm i mongoose
 
 
-const mongoose = require('mongoose');
-
-const dbConnection = async() => {
-
+const mongoose = require( 'mongoose' );
+ 
+const dbConnection = async () => {
+ 
     try {
-        await mongoose.connect( process.env.DB_CNN , {
-            useNewUrlParser: true, 
-            useUnifiedTopology: true,
-            useCreateIndex: true
-        });
-        console.log('DB Online');
-
-    } catch (error) {
-        console.log(error);
-        throw new Error('Error a la hora de inicializar BD');
+        await mongoose.connect( process.env.DB_CNN || '' );
+        console.log( 'DB online' );
+ 
+    } catch ( err ) {
+        console.log( err );
+        throw new Error( 'Error connecting to the DB' );
     }
-}
-
-
+};
+ 
 module.exports = {
     dbConnection
-}
+};
